@@ -7,7 +7,7 @@ require 'json'
 #and other necessary details. We will use a POST with the data in the body of the message
 #Then we will fetch the message and respond.
 
-post '/gateway' do
+post '/gateway' do #handles requests from slack
 	message = params[:text].gsub(params[:trigger],'').strip
 
 	action, repo = message.split('_').map {
