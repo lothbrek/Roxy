@@ -1,6 +1,6 @@
-require 'sinatra'
-require 'httparty'
-require 'json'
+require 'sinatra'  # Rails or Hanami port may be added
+require 'httparty' # HTTP connections \m/
+require 'json'	   # Woo, data!
 
 #So, what we will do is have Roxy take note when she is mentioned
 #in a slack message. Slack will send the details of the message
@@ -17,6 +17,15 @@ post '/gateway' do #handles requests from slack
 	#utilize the github api to call Roxy
 	repo_url = "https://api.github.com/repos/#{repo}"
 
+	# Currently, the only available action call will be
+	# 'issues' which will fetch the issues of a repo
+	# In the future, I will be adding:
+	# Forks
+	# Stars
+	# Latest Commit info
+	# Giving Roxy some personality
+	# Letting Roxy e-mail information about her chat interactions
+	# Scheduling messages/announcements
 	case action
 		when 'issues'
 			resp = HTTParty.get(repo_url)
